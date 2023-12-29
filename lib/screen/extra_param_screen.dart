@@ -10,6 +10,7 @@ class ExtraParamScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build ${runtimeType.toString()}');
     return Scaffold(
       backgroundColor: Colors.green,
       appBar: AppBar(

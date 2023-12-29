@@ -20,9 +20,11 @@ final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   redirect: (context, state) {
-    // if (state.fullPath == '/details2') {
-    //   return '/details1';
-    // }
+    // print('### ${state.uri.path}'); // ### /details1/screenWithPathParam/1111
+    // print('### ${state.fullPath}'); // ### /details1/screenWithPathParam/:userId
+    if (state.fullPath == '/details2') {
+      return '/details1';
+    }
     return null;
   },
   routes: [
@@ -50,10 +52,17 @@ final router = GoRouter(
                 }),
             GoRoute(
               path: 'screenWithExtraParam',
-              name: 'screenWithExtraParam',
               builder: (context, state) {
                 var userId = (state.extra ?? '') as String;
                 return ExtraParamScreen(userId: userId);
+              },
+              redirect: (context, state) {
+                String? userId = state.extra as String?;
+                if (userId == null) {
+                  return '/';
+                } else {
+                  return null;
+                }
               },
             ),
           ],

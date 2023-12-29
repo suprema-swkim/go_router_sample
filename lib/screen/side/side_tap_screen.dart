@@ -11,6 +11,7 @@ class SideTapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build ${runtimeType.toString()}');
     final String uri = GoRouterState.of(context).uri.toString();
     return Scaffold(
       body: Row(
@@ -49,6 +50,7 @@ class SideTapScreen extends StatelessWidget {
                   child: Center(
                     child: IconButton(
                       onPressed: () {
+                        // context.go('/sideBody3');
                         GoRouter.of(context).go('/sideBody3');
                       },
                       icon: Icon(

@@ -5,6 +5,7 @@ class TransitionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build ${runtimeType.toString()}');
     return Scaffold(
       appBar: AppBar(),
       body: const Center(

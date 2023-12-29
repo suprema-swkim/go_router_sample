@@ -5,6 +5,7 @@ class SidebodyScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build ${runtimeType.toString()}');
     return Container(
       color: Colors.red,
       child: const Center(

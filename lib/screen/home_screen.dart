@@ -6,6 +6,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build ${runtimeType.toString()}');
     return Scaffold(
         appBar: AppBar(
           title: const Text('Home'),
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  context.push('/details2');
+                  context.go('/details2');
                 },
                 child: const Text('details2 push'),
               ),
@@ -41,23 +42,23 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  context.push('/sideBody1');
+                  context.go('/sideBody1');
                 },
-                child: const Text('sideBody1 push'),
+                child: const Text('sideBody1 go'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  context.push('/sideBody2');
+                  context.go('/sideBody2');
                 },
-                child: const Text('sideBody2 push'),
+                child: const Text('sideBody2 go'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  context.push('/sideBody3');
+                  context.go('/sideBody3');
                 },
-                child: const Text('sideBody3 push'),
+                child: const Text('sideBody3 go'),
               ),
             ],
           ),
