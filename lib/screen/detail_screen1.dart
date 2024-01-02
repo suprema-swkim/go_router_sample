@@ -58,6 +58,15 @@ class DetailsScreen1 extends StatelessWidget {
               },
               child: const Text('Extra Param Screen go'),
             ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/details2/details22/details222');
+              },
+              child: const Text('go detail222'),
+            ),
           ],
         ),
       ),

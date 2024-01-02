@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_sample/screen/detail_screen1.dart';
 import 'package:go_router_sample/screen/detail_screen2.dart';
+import 'package:go_router_sample/screen/detail_screen22.dart';
+import 'package:go_router_sample/screen/detail_screen222.dart';
+import 'package:go_router_sample/screen/side/side_body_detail_screen3.dart';
 import 'package:go_router_sample/screen/transition_screen.dart';
 import 'package:go_router_sample/screen/side/side_body_screen1.dart';
 import 'package:go_router_sample/screen/side/side_body_screen2.dart';
@@ -19,12 +22,13 @@ final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(d
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
+  observers: [GoRouterObserver()],
   redirect: (context, state) {
     // print('### ${state.uri.path}'); // ### /details1/screenWithPathParam/1111
     // print('### ${state.fullPath}'); // ### /details1/screenWithPathParam/:userId
-    if (state.fullPath == '/details2') {
-      return '/details1';
-    }
+    // if (state.fullPath == '/details2') {
+    //   return '/details1';
+    // }
     return null;
   },
   routes: [
@@ -70,6 +74,18 @@ final router = GoRouter(
         GoRoute(
           path: 'details2',
           builder: (context, state) => const DetailsScreen2(),
+          routes: [
+            GoRoute(
+              path: 'details22',
+              builder: (context, state) => const DetailsScreen22(),
+              routes: [
+                GoRoute(
+                  path: 'details222',
+                  builder: (context, state) => const DetailScreen222(),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     ),
@@ -107,8 +123,28 @@ final router = GoRouter(
         GoRoute(
           path: '/sideBody3',
           builder: (context, state) => const SidebodyScreen3(),
+          routes: [
+            GoRoute(
+              parentNavigatorKey: _rootNavigatorKey,
+              path: 'sideBody3Detail',
+              builder: (context, state) => const SidebodyDetailScreen3(),
+            ),
+          ],
         ),
       ],
     ),
   ],
 );
+
+class GoRouterObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    // analytics.setCurrentScreen(screenName: route.settings.name); // use analytics
+    print('PUSHED SCREEN: ${route.settings.name}'); //name comes back null
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    print('POP SCREEN: ${route.settings.name}');
+  }
+}
